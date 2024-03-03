@@ -1,10 +1,22 @@
 document.getElementById('check-btn').addEventListener('click', function() {
-    var inputValue = document.getElementById('text-input').value.toLowerCase().replace(/[^a-z]/g, '');
-    var reversedValue = inputValue.split('').reverse().join('');
+    let inputValue = document.getElementById('text-input').value.trim().toLowerCase();
 
-    if (inputValue === reversedValue) {
-        document.getElementById('result').textContent = '"' + inputValue + '" is a palindrome.';
+    if (inputValue === '') {
+        alert("Please input a value.");
     } else {
-        document.getElementById('result').textContent = '"' + inputValue + '" is not a palindrome.';
+        if (isPalindrome(inputValue)) {
+            result.innerHTML = `${inputValue} is a palindrome.`;
+        } else {
+            result.innerHTML = `${inputValue} is not a palindrome.`;
+        }
     }
 });
+
+function isPalindrome(str) {
+    // Remove non-alphanumeric characters and convert to lowercase
+    let cleanedStr = str.replace(/[^a-z0-9]/g, '').toLowerCase();
+    // Reverse the string
+    let reversedStr = cleanedStr.split('').reverse().join('');
+    // Check if the original string is equal to its reverse
+    return cleanedStr === reversedStr;
+}
